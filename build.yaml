@@ -1,0 +1,16 @@
+---
+name: "AnimeTracker"
+guid: "d665e118-82e4-4477-9fa7-242607b284cb"
+version: "1.0.0.0"
+targetAbi: "10.8.0.0"
+framework: "net6.0"
+overview: "Short description about your plugin"
+description: >
+  This is a longer description that can span more than one
+  line and include details about your plugin.
+category: "General"
+owner: "jellyfin"
+artifacts:
+- "Jellyfin.Plugin.AnimeTracker.dll"
+changelog: >
+  changelog
