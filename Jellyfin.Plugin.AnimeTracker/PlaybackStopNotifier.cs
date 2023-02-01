@@ -5,6 +5,8 @@ using Jellyfin.Plugin.AnimeTracker.APIs;
 
 namespace Jellyfin.Plugin.AnimeTracker;
 
+// https://github.com/float3/CorrectHorseBatteryStaple/blob/master/Jellyfin.Plugin.AnimeTracker/Notifiers/PlaybackStopNotifier.cs
+
 /// <summary>
 /// Playback stop notifier.
 /// </summary>
@@ -45,11 +47,11 @@ public class PlaybackStopNotifier : IEventConsumer<PlaybackStopEventArgs>
             {
                 if (Config.Tracker == Configuration.Trackers.Both || Config.Tracker == Configuration.Trackers.MyAnimeList)
                 {
-                    await MAL.Update(eventArgs.MediaInfo);
+                    await MAL.Update(eventArgs.MediaInfo, Config);
                 }
                 if (Config.Tracker == Configuration.Trackers.Both || Config.Tracker == Configuration.Trackers.AniList)
                 {
-                    await AniList.Update(eventArgs.MediaInfo);
+                    await AniList.Update(eventArgs.MediaInfo, Config);
                 }
             }
         }

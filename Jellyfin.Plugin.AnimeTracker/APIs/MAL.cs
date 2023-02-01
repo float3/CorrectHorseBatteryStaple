@@ -10,7 +10,9 @@ namespace Jellyfin.Plugin.AnimeTracker.APIs;
 public class MAL
 {
     // https://github.com/SuperMarcus/myanimelist-api-specification#update-entries
-    internal static Task Update(BaseItemDto mediaInfo)
+
+    ///
+    public static Task Update(BaseItemDto mediaInfo, Configuration.PluginConfiguration config)
     {
         throw new NotImplementedException();
     }

@@ -10,7 +10,9 @@ namespace Jellyfin.Plugin.AnimeTracker.APIs;
 public class AniList
 {
     // https://github.com/Alkouille/douki/blob/master/src/ani_api/queries.rs
-    internal static Task Update(BaseItemDto mediaInfo)
+
+    ///
+    public static Task Update(BaseItemDto mediaInfo, Configuration.PluginConfiguration config)
     {
         throw new NotImplementedException();
     }
