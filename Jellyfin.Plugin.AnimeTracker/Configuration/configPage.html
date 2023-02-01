@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>AnimeTracker</title>
 </head>
+
 <body>
-    <div id="AnimeTrackerConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox">
+    <div id="AnimeTrackerConfigPage" data-role="page" class="page type-interior pluginConfigurationPage"
+        data-require="emby-input,emby-button,emby-select,emby-checkbox">
         <div data-role="content">
             <div class="content-primary">
                 <form id="AnimeTrackerConfigForm">
                     <div class="selectContainer">
                         <label class="selectLabel" for="Trackers">Trackers</label>
-                        <select is="emby-select" id="Trackers" name="Trackers" class="emby-select-withcolor emby-select">
+                        <select is="emby-select" id="Trackers" name="Trackers"
+                            class="emby-select-withcolor emby-select">
                             <option id="None" value="None">None</option>
                             <option id="AniList" value="AniList">AniList</option>
                             <option id="MyAnimeList" value="MyAnimeList">MyAnimeList</option>
@@ -19,13 +23,23 @@
                         </select>
                     </div>
                     <div class="inputContainer">
-                        <label class="inputeLabel inputLabelUnfocused" for="Username">A String</label>
-                        <input id="Username" name="Username" type="text" is="emby-input" />
+                        <label class="inputeLabel inputLabelUnfocused" for="MALUsername">A String</label>
+                        <input id="MALUsername" name="MALUsername" type="text" is="emby-input" />
                         <div class="fieldDescription">Another Description</div>
                     </div>
                     <div class="inputContainer">
-                        <label class="inputeLabel inputLabelUnfocused" for="Password">A String</label>
-                        <input id="Password" name="Password" type="text" is="emby-input" />
+                        <label class="inputeLabel inputLabelUnfocused" for="MALPassword">A String</label>
+                        <input id="MALPassword" name="MALPassword" type="text" is="emby-input" />
+                        <div class="fieldDescription">Another Description</div>
+                    </div>
+                    <div class="inputContainer">
+                        <label class="inputeLabel inputLabelUnfocused" for="AniListUsername">A String</label>
+                        <input id="AniListUsername" name="AniListUsername" type="text" is="emby-input" />
+                        <div class="fieldDescription">Another Description</div>
+                    </div>
+                    <div class="inputContainer">
+                        <label class="inputeLabel inputLabelUnfocused" for="AniListPassword">A String</label>
+                        <input id="AniListPassword" name="AniListPassword" type="text" is="emby-input" />
                         <div class="fieldDescription">Another Description</div>
                     </div>
                     <div>
@@ -42,7 +56,7 @@
             };
 
             document.querySelector('#AnimeTrackerConfigPage')
-                .addEventListener('pageshow', function() {
+                .addEventListener('pageshow', function () {
                     Dashboard.showLoadingMsg();
                     ApiClient.getPluginConfiguration(AnimeTrackerConfig.pluginUniqueId).then(function (config) {
                         document.querySelector('#Trackers').value = config.Trackers;
@@ -52,20 +66,21 @@
                 });
 
             document.querySelector('#AnimeTrackerConfigForm')
-                .addEventListener('submit', function(e) {
-                Dashboard.showLoadingMsg();
-                ApiClient.getPluginConfiguration(AnimeTrackerConfig.pluginUniqueId).then(function (config) {
-                    config.Trackers = document.querySelector('#Trackers').value;
-                    config.Login = document.querySelector('#Login').value;
-                    ApiClient.updatePluginConfiguration(AnimeTrackerConfig.pluginUniqueId, config).then(function (result) {
-                        Dashboard.processPluginConfigurationUpdateResult(result);
+                .addEventListener('submit', function (e) {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(AnimeTrackerConfig.pluginUniqueId).then(function (config) {
+                        config.Trackers = document.querySelector('#Trackers').value;
+                        config.Login = document.querySelector('#Login').value;
+                        ApiClient.updatePluginConfiguration(AnimeTrackerConfig.pluginUniqueId, config).then(function (result) {
+                            Dashboard.processPluginConfigurationUpdateResult(result);
+                        });
                     });
-                });
 
-                e.preventDefault();
-                return false;
-            });
+                    e.preventDefault();
+                    return false;
+                });
         </script>
     </div>
 </body>
+
 </html>

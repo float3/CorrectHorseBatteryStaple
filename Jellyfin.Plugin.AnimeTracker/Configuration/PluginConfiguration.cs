@@ -40,8 +40,10 @@ public class PluginConfiguration : BasePluginConfiguration
     public PluginConfiguration()
     {
         Tracker = Trackers.AniList;
-        Username = new();
-        Password = new();
+        MALUsername = new();
+        MALPassword = new();
+        AniListUsername = new();
+        AniListPassword = new();
     }
 
     /// <summary>
@@ -50,13 +52,23 @@ public class PluginConfiguration : BasePluginConfiguration
     public Trackers Tracker { get; set; }
 
     /// <summary>
-    /// Username.
+    /// MAL Username.
     /// </summary>
-    public SecureString Username;
-    
-    /// <summary>
-    /// Password.
-    /// </summary>
-    public SecureString Password;
+    public SecureString MALUsername;
 
+
+    /// <summary>
+    /// MALPassword.
+    /// </summary>
+    public SecureString MALPassword;
+
+    /// <summary>
+    /// Anilist Username.
+    /// </summary>
+    public SecureString AniListUsername;
+
+    /// <summary>
+    /// AniList Password.
+    /// </summary>
+    public SecureString AniListPassword;
 }

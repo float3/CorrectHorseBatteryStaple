@@ -40,7 +40,7 @@ public class PlaybackStopNotifier : IEventConsumer<PlaybackStopEventArgs>
             // No users in playback session.
             return;
         }
-        
+
         if (eventArgs.PlayedToCompletion)
         {
             foreach (var user in eventArgs.Users)
