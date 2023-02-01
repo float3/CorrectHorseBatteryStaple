@@ -10,26 +10,22 @@
             <div class="content-primary">
                 <form id="AnimeTrackerConfigForm">
                     <div class="selectContainer">
-                        <label class="selectLabel" for="Options">Several Options</label>
-                        <select is="emby-select" id="Options" name="Options" class="emby-select-withcolor emby-select">
-                            <option id="optOneOption" value="OneOption">One Option</option>
-                            <option id="optAnotherOption" value="AnotherOption">Another Option</option>
+                        <label class="selectLabel" for="Trackers">Trackers</label>
+                        <select is="emby-select" id="Trackers" name="Trackers" class="emby-select-withcolor emby-select">
+                            <option id="None" value="None">None</option>
+                            <option id="AniList" value="AniList">AniList</option>
+                            <option id="MyAnimeList" value="MyAnimeList">MyAnimeList</option>
+                            <option id="Both" value="Both">Both</option>
                         </select>
                     </div>
                     <div class="inputContainer">
-                        <label class="inputLabel inputLabelUnfocused" for="AnInteger">An Integer</label>
-                        <input id="AnInteger" name="AnInteger" type="number" is="emby-input" min="0" />
-                        <div class="fieldDescription">A Description</div>
-                    </div>
-                    <div class="checkboxContainer checkboxContainer-withDescription">
-                        <label class="emby-checkbox-label">
-                            <input id="TrueFalseSetting" name="TrueFalseCheckBox" type="checkbox" is="emby-checkbox" />
-                            <span>A Checkbox</span>
-                        </label>
+                        <label class="inputeLabel inputLabelUnfocused" for="Username">A String</label>
+                        <input id="Username" name="Username" type="text" is="emby-input" />
+                        <div class="fieldDescription">Another Description</div>
                     </div>
                     <div class="inputContainer">
-                        <label class="inputeLabel inputLabelUnfocused" for="AString">A String</label>
-                        <input id="AString" name="AString" type="text" is="emby-input" />
+                        <label class="inputeLabel inputLabelUnfocused" for="Password">A String</label>
+                        <input id="Password" name="Password" type="text" is="emby-input" />
                         <div class="fieldDescription">Another Description</div>
                     </div>
                     <div>
@@ -49,10 +45,8 @@
                 .addEventListener('pageshow', function() {
                     Dashboard.showLoadingMsg();
                     ApiClient.getPluginConfiguration(AnimeTrackerConfig.pluginUniqueId).then(function (config) {
-                        document.querySelector('#Options').value = config.Options;
-                        document.querySelector('#AnInteger').value = config.AnInteger;
-                        document.querySelector('#TrueFalseSetting').checked = config.TrueFalseSetting;
-                        document.querySelector('#AString').value = config.AString;
+                        document.querySelector('#Trackers').value = config.Trackers;
+                        document.querySelector('#Login').value = config.Login;
                         Dashboard.hideLoadingMsg();
                     });
                 });
@@ -61,10 +55,8 @@
                 .addEventListener('submit', function(e) {
                 Dashboard.showLoadingMsg();
                 ApiClient.getPluginConfiguration(AnimeTrackerConfig.pluginUniqueId).then(function (config) {
-                    config.Options = document.querySelector('#Options').value;
-                    config.AnInteger = document.querySelector('#AnInteger').value;
-                    config.TrueFalseSetting = document.querySelector('#TrueFalseSetting').checked;
-                    config.AString = document.querySelector('#AString').value;
+                    config.Trackers = document.querySelector('#Trackers').value;
+                    config.Login = document.querySelector('#Login').value;
                     ApiClient.updatePluginConfiguration(AnimeTrackerConfig.pluginUniqueId, config).then(function (result) {
                         Dashboard.processPluginConfigurationUpdateResult(result);
                     });

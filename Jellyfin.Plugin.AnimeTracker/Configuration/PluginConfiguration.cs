@@ -1,21 +1,32 @@
 using MediaBrowser.Model.Plugins;
+using System.Security;
 
 namespace Jellyfin.Plugin.AnimeTracker.Configuration;
 
 /// <summary>
-/// The configuration options.
+/// choice of Tracker.
 /// </summary>
-public enum SomeOptions
+public enum Trackers
 {
     /// <summary>
-    /// Option one.
+    /// None.
     /// </summary>
-    OneOption,
+    None = 0x00,
 
     /// <summary>
-    /// Second option.
+    /// AniList.
     /// </summary>
-    AnotherOption
+    AniList = 0x01,
+
+    /// <summary>
+    /// MyAnimeList.
+    /// </summary>
+    MyAnimeList = 0x10,
+
+    /// <summary>
+    /// Both.
+    /// </summary>
+    Both = 0x11,
 }
 
 /// <summary>
@@ -28,30 +39,24 @@ public class PluginConfiguration : BasePluginConfiguration
     /// </summary>
     public PluginConfiguration()
     {
-        // set default options here
-        Options = SomeOptions.AnotherOption;
-        TrueFalseSetting = true;
-        AnInteger = 2;
-        AString = "string";
+        Tracker = Trackers.AniList;
+        Username = new();
+        Password = new();
     }
 
     /// <summary>
-    /// Gets or sets a value indicating whether some true or false setting is enabled..
+    /// Gets or sets the Tracker.
     /// </summary>
-    public bool TrueFalseSetting { get; set; }
+    public Trackers Tracker { get; set; }
 
     /// <summary>
-    /// Gets or sets an integer setting.
+    /// Username.
     /// </summary>
-    public int AnInteger { get; set; }
-
+    public SecureString Username;
+    
     /// <summary>
-    /// Gets or sets a string setting.
+    /// Password.
     /// </summary>
-    public string AString { get; set; }
+    public SecureString Password;
 
-    /// <summary>
-    /// Gets or sets an enum option.
-    /// </summary>
-    public SomeOptions Options { get; set; }
 }
